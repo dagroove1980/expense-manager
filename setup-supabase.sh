@@ -46,13 +46,37 @@ if [ ${#DB_PASSWORD} -lt 8 ]; then
     exit 1
 fi
 
+# Get organization ID
+echo ""
+echo "📋 Getting organization ID..."
+ORG_ID=$(supabase projects list 2>/dev/null | grep -v "LINKED" | grep -v "---" | awk 'NR==2 {print $2}' | head -1)
+
+if [ -z "$ORG_ID" ]; then
+    echo "❌ Could not determine organization ID"
+    echo "   Please create project manually at: https://supabase.com/dashboard"
+    echo "   Or provide org-id: supabase projects create expense-manager --org-id YOUR_ORG_ID --db-password PASSWORD"
+    exit 1
+fi
+
+echo "✅ Organization ID: $ORG_ID"
+
 # Create Supabase project
 echo ""
 echo "📊 Creating Supabase project..."
 PROJECT_NAME="expense-manager"
-supabase projects create "$PROJECT_NAME" --db-password "$DB_PASSWORD" || {
-    echo "⚠️  Project creation failed or project already exists"
-    echo "   Continuing with existing project..."
+
+# Try creating with org-id (region may be optional in some CLI versions)
+supabase projects create "$PROJECT_NAME" --org-id "$ORG_ID" --db-password "$DB_PASSWORD" 2>&1 || {
+    echo "⚠️  Project creation via CLI failed"
+    echo "   This might be due to CLI version or region requirements"
+    echo "   Creating project manually is recommended:"
+    echo "   1. Go to https://supabase.com/dashboard"
+    echo "   2. Click 'New Project'"
+    echo "   3. Name: expense-manager"
+    echo "   4. Password: [use the one you entered]"
+    echo "   5. Wait for creation, then continue with linking..."
+    echo ""
+    read -p "Press Enter after you've created the project manually, or Ctrl+C to exit..."
 }
 
 # Get project details

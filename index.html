@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Manager - Track Your Spending</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">💰</span>
+                <span class="logo-text">Expense Manager</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="expenses.html" class="nav-link">Expenses</a>
+                <a href="categories.html" class="nav-link">Categories</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="landing-page">
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Take Control of Your Finances</h1>
+                <p class="hero-subtitle">Track expenses, manage budgets, and gain insights into your spending habits</p>
+                <div class="hero-features">
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Track Expenses</h3>
+                        <p>Record every expense with categories, dates, and payment methods</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📈</div>
+                        <h3>View Analytics</h3>
+                        <p>See spending trends and statistics at a glance</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🏷️</div>
+                        <h3>Organize by Category</h3>
+                        <p>Categorize expenses for better organization</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💾</div>
+                        <h3>Cloud Storage</h3>
+                        <p>Your data is safely stored in the cloud</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="page-content">
+            <div class="stats-grid" id="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Total Expenses</div>
+                    <div class="stat-value" id="total-expenses">$0.00</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">This Month</div>
+                    <div class="stat-value" id="monthly-expenses">$0.00</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">This Week</div>
+                    <div class="stat-value" id="weekly-expenses">$0.00</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Transactions</div>
+                    <div class="stat-value" id="total-count">0</div>
+                </div>
+            </div>
+
+            <div class="content-wrapper">
+                <h2 style="margin-bottom: 1rem;">Quick Actions</h2>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="expenses.html" class="btn btn-primary">Add Expense</a>
+                    <a href="expenses.html" class="btn btn-secondary">View All Expenses</a>
+                    <a href="categories.html" class="btn btn-secondary">Manage Categories</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="alert-container" class="alert-container"></div>
+    <script src="config.js"></script>
+    <script src="supabase.js"></script>
+    <script src="app.js"></script>
+    <script>
+        // Update stats on page load
+        async function updateStats() {
+            await refreshCache();
+            const stats = calculateStats();
+            document.getElementById('total-expenses').textContent = formatCurrency(stats.total);
+            document.getElementById('monthly-expenses').textContent = formatCurrency(stats.monthlyTotal);
+            document.getElementById('weekly-expenses').textContent = formatCurrency(stats.weeklyTotal);
+            document.getElementById('total-count').textContent = stats.totalCount;
+        }
+        
+        // Wait for Supabase to be ready
+        if (window.supabaseReady) {
+            updateStats();
+        } else {
+            // Wait a bit for Supabase to initialize
+            setTimeout(updateStats, 1000);
+        }
+    </script>
+</body>
+</html>
+

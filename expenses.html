@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expenses - Expense Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">💰</span>
+                <span class="logo-text">Expense Manager</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="expenses.html" class="nav-link active">Expenses</a>
+                <a href="categories.html" class="nav-link">Categories</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="page-content">
+        <div class="page-header">
+            <h1>Expenses</h1>
+            <p class="page-subtitle">Track and manage all your expenses</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Total Expenses</div>
+                <div class="stat-value" id="total-stat">$0.00</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">This Month</div>
+                <div class="stat-value" id="monthly-stat">$0.00</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">This Week</div>
+                <div class="stat-value" id="weekly-stat">$0.00</div>
+            </div>
+        </div>
+
+        <div class="action-bar">
+            <button class="btn btn-primary" onclick="openAddExpenseModal()">+ Add Expense</button>
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Search expenses..." oninput="filterExpenses()">
+            </div>
+        </div>
+
+        <div class="content-wrapper">
+            <div id="expenses-container" class="expenses-grid">
+                <!-- Expenses will be loaded here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Add/Edit Expense Modal -->
+    <div id="expense-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Add Expense</h2>
+                <button class="modal-close" onclick="closeExpenseModal()">&times;</button>
+            </div>
+            <form id="expense-form" onsubmit="saveExpense(event)">
+                <input type="hidden" id="expense-id">
+                <div class="form-group">
+                    <label for="expense-amount">Amount *</label>
+                    <input type="number" id="expense-amount" step="0.01" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="expense-description">Description *</label>
+                    <input type="text" id="expense-description" required>
+                </div>
+                <div class="form-group">
+                    <label for="expense-category">Category</label>
+                    <select id="expense-category">
+                        <option value="">Select a category</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="expense-date">Date *</label>
+                    <input type="date" id="expense-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="expense-payment">Payment Method</label>
+                    <select id="expense-payment">
+                        <option value="cash">Cash</option>
+                        <option value="credit">Credit Card</option>
+                        <option value="debit">Debit Card</option>
+                        <option value="bank">Bank Transfer</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="expense-notes">Notes</label>
+                    <textarea id="expense-notes"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeExpenseModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Expense</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="alert-container" class="alert-container"></div>
+    <script src="config.js"></script>
+    <script src="supabase.js"></script>
+    <script src="app.js"></script>
+    <script src="expenses.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,11 @@
+{
+  "name": "expense-manager",
+  "version": "1.0.0",
+  "description": "Personal expense management system",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "node vercel-build.js",
+    "deploy": "vercel --prod"
+  }
+}
+

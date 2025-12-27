@@ -1,7 +1,7 @@
 {
-  "name": "expense-manager",
+  "name": "wealth-os",
   "version": "1.0.0",
-  "description": "Personal expense management system",
+  "description": "Wealth OS - Personal wealth and expense management system",
   "scripts": {
     "dev": "vercel dev",
     "build": "node vercel-build.js",

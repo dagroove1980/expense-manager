@@ -55,15 +55,22 @@
 ### ⏳ Pending Steps (4/12 remaining)
 
 1. **⏳ Supabase Project Setup** 🔄 NEXT STEP
-   - ⚠️  **Issue**: Supabase CLI requires org-id and region flags, but region validation is failing
+   - ⚠️  **Issue**: Supabase CLI v2.67.1 has a bug - region flag shows empty list `[ ]`
+   - 🔍 **Root Cause**: CLI cannot fetch available regions from API
    - 💡 **Solution**: Create project manually (faster and more reliable)
    - **Action Required**: 
      - Go to https://supabase.com/dashboard
      - Click "New Project"
      - Name: `expense-manager`
      - Password: `ExpenseManager2024!` (or your choice)
-     - Wait 2-3 minutes
-   - **Then**: Link and run schema (see COMPLETE_SETUP.md)
+     - Region: Choose closest to you
+     - Wait 2-3 minutes for creation
+   - **Then**: After creation, we can automate:
+     - Linking project
+     - Running schema
+     - Inserting dummy data
+     - Getting credentials
+     - Setting Vercel env vars
 
 2. **⏳ Database Schema & Data**
    - After project creation:

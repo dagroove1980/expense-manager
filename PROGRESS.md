@@ -42,16 +42,18 @@
 
 ### ⏳ Pending Steps
 
-1. **⏳ Supabase Project Setup**
-   - ❌ Supabase project needs to be created
-   - ❌ Database schema needs to be executed
-   - ❌ Dummy data needs to be inserted
-   - ❌ Environment variables need to be set in Vercel
+1. **⏳ Supabase Project Setup** 🔄 IN PROGRESS
+   - ⚠️  Supabase CLI requires org-id and region (CLI limitation)
+   - 💡 **Recommended**: Create manually at https://supabase.com/dashboard
+   - Then link: `supabase link --project-ref YOUR_PROJECT_REF`
+   - Run schema: `supabase db execute --file supabase-schema.sql`
+   - Insert data: `supabase db execute --file supabase-dummy-data.sql`
 
 2. **⏳ Environment Variables**
    - Need to set in Vercel dashboard:
      - `VITE_SUPABASE_URL`
      - `VITE_SUPABASE_ANON_KEY`
+   - Or use CLI: `vercel env add VITE_SUPABASE_URL production`
 
 3. **⏳ Initial Deployment**
    - Code is ready but needs environment variables

@@ -64,10 +64,33 @@
 **Option A: Automated Setup (Recommended)**
 
 First, install and login to Supabase CLI:
+
+**On macOS (using Homebrew) - RECOMMENDED:**
 ```bash
-npm install -g supabase
+# Install Supabase CLI
+brew install supabase/tap/supabase
+
+# Verify installation
+supabase --version
+
+# Login to Supabase (opens browser)
 supabase login
 ```
+
+**Note:** If you get permission errors, you may need to run:
+```bash
+sudo chown -R $(whoami) /opt/homebrew/Cellar
+```
+
+**On Windows (using Scoop):**
+```bash
+scoop bucket add supabase https://github.com/supabase/scoop-bucket.git
+scoop install supabase
+supabase login
+```
+
+**Or download directly:**
+Visit https://github.com/supabase/cli/releases and download for your platform
 
 Then run the automated setup script:
 ```bash

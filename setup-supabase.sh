@@ -11,7 +11,19 @@ echo ""
 # Check if Supabase CLI is installed
 if ! command -v supabase &> /dev/null; then
     echo "❌ Supabase CLI not found!"
-    echo "   Install it with: npm install -g supabase"
+    echo ""
+    echo "   Install it using one of these methods:"
+    echo ""
+    echo "   Option 1: Homebrew (macOS/Linux)"
+    echo "      brew install supabase/tap/supabase"
+    echo ""
+    echo "   Option 2: Scoop (Windows)"
+    echo "      scoop bucket add supabase https://github.com/supabase/scoop-bucket.git"
+    echo "      scoop install supabase"
+    echo ""
+    echo "   Option 3: Direct download"
+    echo "      Visit: https://github.com/supabase/cli/releases"
+    echo ""
     echo "   Then run: supabase login"
     exit 1
 fi

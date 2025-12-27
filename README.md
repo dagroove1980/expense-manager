@@ -1,6 +1,6 @@
-# Expense Manager
+# Wealth OS
 
-Personal expense management system built with HTML, JavaScript, Supabase, and deployed on Vercel.
+Personal wealth and expense management system built with HTML, JavaScript, Supabase, and deployed on Vercel.
 
 ## Features
 

@@ -1,13 +1,13 @@
-# Expense Manager - Setup Guide
+# Wealth OS - Setup Guide
 
-Follow these steps to complete the setup and deploy your expense management website.
+Follow these steps to complete the setup and deploy your wealth and expense management website.
 
 ## Step 1: Create Supabase Project
 
 1. Go to [Supabase Dashboard](https://supabase.com/dashboard)
 2. Click "New Project"
 3. Fill in:
-   - Project name: `expense-manager` (or your choice)
+   - Project name: `wealth-os` (or your choice)
    - Database password: (save this!)
    - Region: Choose closest to you
 4. Wait for project to be created (2-3 minutes)
@@ -39,29 +39,29 @@ This creates:
 ### Option A: Using GitHub CLI (Recommended)
 
 ```bash
-cd expense-manager
+cd wealth-os
 git init
 git branch -M main
-gh repo create expense-manager --public --source=. --remote=origin
+gh repo create wealth-os --public --source=. --remote=origin
 git add -A
-git commit -m "Initial commit: Expense Manager"
+git commit -m "Initial commit: Wealth OS"
 git push -u origin main
 ```
 
 ### Option B: Manual GitHub Setup
 
 1. Go to [GitHub](https://github.com/new)
-2. Create a new repository named `expense-manager`
+2. Create a new repository named `wealth-os`
 3. Don't initialize with README (we already have one)
 4. Then run:
 
 ```bash
-cd expense-manager
+cd wealth-os
 git init
 git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/expense-manager.git
+git remote add origin https://github.com/YOUR_USERNAME/wealth-os.git
 git add -A
-git commit -m "Initial commit: Expense Manager"
+git commit -m "Initial commit: Wealth OS"
 git push -u origin main
 ```
 
@@ -77,7 +77,7 @@ npm install -g vercel
 vercel login
 
 # Link project
-cd expense-manager
+cd wealth-os
 vercel link
 
 # Set environment variables
@@ -107,7 +107,7 @@ vercel --prod
 
 ## Step 6: Verify Deployment
 
-1. After deployment, Vercel will give you a URL (e.g., `expense-manager.vercel.app`)
+1. After deployment, Vercel will give you a URL (e.g., `wealth-os.vercel.app`)
 2. Visit the URL
 3. Try adding an expense
 4. Check Supabase Dashboard → Table Editor → `expenses` to see your data
@@ -138,7 +138,7 @@ vercel --prod
 To run locally:
 
 ```bash
-cd expense-manager
+cd wealth-os
 npm install
 npm run dev
 ```

@@ -60,18 +60,36 @@
 ## 🎯 Next Steps
 
 ### Step 1: Create Supabase Project
-```bash
-# Option A: Using Supabase CLI (recommended)
-supabase login
-supabase projects create expense-manager --db-password [your-password]
 
-# Option B: Manual creation
-# Go to https://supabase.com/dashboard
-# Click "New Project"
-# Name: expense-manager
-# Set database password
-# Wait for project creation (2-3 minutes)
+**Option A: Automated Setup (Recommended)**
+
+First, install and login to Supabase CLI:
+```bash
+npm install -g supabase
+supabase login
 ```
+
+Then run the automated setup script:
+```bash
+cd expense-manager
+./setup-supabase.sh
+```
+
+This script will:
+- Create the Supabase project
+- Link it locally
+- Run the database schema
+- Insert dummy data
+- Show you the credentials to set in Vercel
+
+**Option B: Manual Setup**
+
+1. Go to https://supabase.com/dashboard
+2. Click "New Project"
+3. Name: `expense-manager`
+4. Set database password
+5. Wait for project creation (2-3 minutes)
+6. Get your project URL and anon key from Settings → API
 
 ### Step 2: Run Database Schema
 1. Go to Supabase Dashboard → SQL Editor
